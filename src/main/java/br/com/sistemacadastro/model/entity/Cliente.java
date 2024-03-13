@@ -1,29 +1,35 @@
 package br.com.sistemacadastro.model.entity;
 
-import br.com.caelum.stella.bean.validation.CPF;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
+import org.hibernate.validator.constraints.NotEmpty;
+import org.hibernate.validator.constraints.br.CPF;
 
-import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import java.time.LocalDate;
 
 @Entity
+@AllArgsConstructor
+@NoArgsConstructor
 @Data
-public class Cliente {
+@Builder
+public class Cliente  {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
     @Column(nullable = false, length = 150)
-    @NotEmpty
+    @NotEmpty(message = "{campo.nome.obrigatorio}")
     private String nome;
 
     @Column(nullable = false, length = 11)
-    @NotNull
-    @CPF(message = "CPF Inválido!", ignoreRepeated = true)
+    @NotNull(message = "{campo.cpf.obrigatorio}")
+    @CPF(message = "{campo.cpf.invalido}")
     private String cpf;
 
     @Column(name = "data_cadastro", updatable = false)
