@@ -5,6 +5,9 @@ import br.com.sistemacadastro.model.repository.ClienteRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.server.ResponseStatusException;
+
+import java.util.List;
 
 @RestController
 public class ClientController {
@@ -14,7 +17,18 @@ public class ClientController {
 
     @PostMapping("/salvar/cliente")
     @ResponseStatus(HttpStatus.CREATED)
-    public Cliente salvarCliente (@RequestBody Cliente cliente) {
+    public Cliente salvarCliente(@RequestBody Cliente cliente) {
         return repository.save(cliente);
+    }
+
+    @GetMapping("cliente/{id}")
+    public Cliente acharId(@PathVariable Integer id) {
+        return repository.findById(id)
+                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
+    }
+
+    @GetMapping("clientes")
+    public List<Cliente> clientes () {
+       return repository.findAll();
     }
 }
