@@ -1,0 +1,20 @@
+package br.com.sistemacadastro.rest;
+
+import br.com.sistemacadastro.model.entity.Cliente;
+import br.com.sistemacadastro.model.repository.ClienteRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.*;
+
+@RestController
+public class ClientController {
+
+    @Autowired
+    private ClienteRepository repository;
+
+    @PostMapping("/salvar/cliente")
+    @ResponseStatus(HttpStatus.CREATED)
+    public Cliente salvarCliente (@RequestBody Cliente cliente) {
+        return repository.save(cliente);
+    }
+}
