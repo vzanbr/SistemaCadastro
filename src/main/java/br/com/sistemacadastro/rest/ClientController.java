@@ -31,4 +31,15 @@ public class ClientController {
     public List<Cliente> clientes () {
        return repository.findAll();
     }
+
+    @DeleteMapping("/deletar/{id}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public void deletarId(@PathVariable Integer id) {
+        repository.findById(id)
+                .map(cliente -> {
+                    repository.delete(cliente);
+                    return Void.TYPE;
+                })
+                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
+    }
 }
