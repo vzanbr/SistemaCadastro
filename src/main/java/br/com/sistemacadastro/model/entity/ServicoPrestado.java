@@ -28,9 +28,4 @@ public class ServicoPrestado {
     @Column(name = "data", updatable = false)
     @JsonFormat(pattern = "dd/MM/yyyy")
     private LocalDate data;
-
-    @PrePersist
-    public void prePersist() {
-        setData(LocalDate.now());
-    }
 }
