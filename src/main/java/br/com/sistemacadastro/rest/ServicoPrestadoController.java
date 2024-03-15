@@ -49,16 +49,19 @@ public class ServicoPrestadoController {
     }
 
 
-//    @GetMapping("cliente/{id}")
+//    @GetMapping("/servico/{id}")
 //    public Cliente acharId(@PathVariable Integer id) {
 //        return repository.findById(id)
 //                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Cliente não encontrado"));
 //    }
 //
-//    @GetMapping("clientes")
-//    public List<Cliente> clientes () {
-//       return repository.findAll();
-//    }
+    @GetMapping("/servico")
+    public List<ServicoPrestado> servicoPrestados
+    (@RequestParam(value = "nome", required = false, defaultValue = "") String nome,
+     @RequestParam(value = "mes", required = false) String mes)
+    {
+       return repository.findByNomeClienteAndMes("%" + nome + "%", mes);
+    }
 //
 //    @DeleteMapping("/deletar/{id}")
 //    @ResponseStatus(HttpStatus.NO_CONTENT)
