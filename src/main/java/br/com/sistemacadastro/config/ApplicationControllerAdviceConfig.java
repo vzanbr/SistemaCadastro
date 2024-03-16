@@ -1,4 +1,4 @@
-package br.com.sistemacadastro.rest;
+package br.com.sistemacadastro.config;
 
 import br.com.sistemacadastro.exception.ApiErrors;
 import org.springframework.http.HttpStatus;
@@ -15,7 +15,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @RestControllerAdvice
-public class ApplicationControllerAdvice {
+public class ApplicationControllerAdviceConfig {
 
     @ExceptionHandler(MethodArgumentNotValidException.class)
     @ResponseStatus(HttpStatus.BAD_REQUEST)

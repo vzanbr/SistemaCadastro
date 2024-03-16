@@ -1,10 +1,10 @@
-package br.com.sistemacadastro.rest;
+package br.com.sistemacadastro.controller;
 
 import br.com.sistemacadastro.model.entity.Cliente;
 import br.com.sistemacadastro.model.entity.ServicoPrestado;
 import br.com.sistemacadastro.model.repository.ClienteRepository;
 import br.com.sistemacadastro.model.repository.ServicoPrestadoRepository;
-import br.com.sistemacadastro.rest.dto.ServicoPrestadoDTO;
+import br.com.sistemacadastro.dto.ServicoPrestadoDTO;
 import br.com.sistemacadastro.util.BigDecimalConvert;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -15,7 +15,6 @@ import javax.validation.Valid;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
-import java.util.Optional;
 
 @RestController
 public class ServicoPrestadoController {

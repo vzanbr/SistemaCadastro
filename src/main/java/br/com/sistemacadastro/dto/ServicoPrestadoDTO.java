@@ -1,4 +1,4 @@
-package br.com.sistemacadastro.rest.dto;
+package br.com.sistemacadastro.dto;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;

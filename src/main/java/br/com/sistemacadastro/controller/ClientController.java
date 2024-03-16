@@ -1,4 +1,4 @@
-package br.com.sistemacadastro.rest;
+package br.com.sistemacadastro.controller;
 
 import br.com.sistemacadastro.model.entity.Cliente;
 import br.com.sistemacadastro.model.repository.ClienteRepository;
