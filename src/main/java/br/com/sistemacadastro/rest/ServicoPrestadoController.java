@@ -39,7 +39,7 @@ public class ServicoPrestadoController {
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.BAD_REQUEST, "Cliente não encontrado!"));
 
         ServicoPrestado servicoPrestado = new ServicoPrestado();
-        servicoPrestado.setDesc(dto.getDescricao());
+        servicoPrestado.setDescricao(dto.getDescricao());
         servicoPrestado.setData(data);
         servicoPrestado.setCliente(cliente);
         servicoPrestado.setValor(convert.converter(dto.getPreco()));

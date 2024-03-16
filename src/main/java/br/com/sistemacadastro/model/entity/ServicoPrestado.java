@@ -16,7 +16,7 @@ public class ServicoPrestado {
     private Integer id;
 
     @Column(nullable = false, length = 150)
-    private String desc;
+    private String descricao;
 
     @ManyToOne
     @JoinColumn(name = "id_cliente")
