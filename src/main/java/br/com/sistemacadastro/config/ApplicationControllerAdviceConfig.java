@@ -2,7 +2,6 @@ package br.com.sistemacadastro.config;
 
 import br.com.sistemacadastro.exception.ApiErrors;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.MethodArgumentNotValidException;
@@ -31,7 +30,7 @@ public class ApplicationControllerAdviceConfig {
     @ExceptionHandler(ResponseStatusException.class)
     public ResponseEntity handleResponseStatusExceptions(ResponseStatusException ex) {
         String messagemErro = ex.getMessage();
-        HttpStatusCode codigoStatus = ex.getStatusCode();
+        HttpStatus codigoStatus = ex.getStatus();
         ApiErrors apiErrors = new ApiErrors(messagemErro);
         return new  ResponseEntity(apiErrors, codigoStatus);
     }
