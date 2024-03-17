@@ -1,27 +1,31 @@
 package br.com.sistemacadastro.controller;
 
-import br.com.sistemacadastro.model.entity.Cliente;
+import br.com.sistemacadastro.exception.UsuarioCadastradoException;
 import br.com.sistemacadastro.model.entity.Usuario;
-import br.com.sistemacadastro.model.repository.ClienteRepository;
 import br.com.sistemacadastro.model.repository.UsuarioRepository;
+import br.com.sistemacadastro.service.UsuarioService;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 
 import javax.validation.Valid;
-import java.util.List;
 
 @RestController
 public class UsuarioController {
 
     @Autowired
-    private UsuarioRepository repository;
+    private UsuarioService service;
 
     @PostMapping("/salvar/usuario")
     @ResponseStatus(HttpStatus.CREATED)
-    public Usuario salvarUsuario(@RequestBody @Valid Usuario usuario) {
-        return repository.save(usuario);
+    public void salvar(@RequestBody @Valid Usuario usuario){
+        try{
+            service.salvar(usuario);
+        }catch (UsuarioCadastradoException e){
+            throw new ResponseStatusException( HttpStatus.BAD_REQUEST, e.getMessage() );
+        }
     }
 
 //    @GetMapping("cliente/{id}")
