@@ -16,24 +16,24 @@ public class ClientController {
     @Autowired
     private ClienteRepository repository;
 
-    @PostMapping("/salvar/cliente")
+    @PostMapping("/cliente/salvar")
     @ResponseStatus(HttpStatus.CREATED)
     public Cliente salvarCliente(@RequestBody @Valid Cliente cliente) {
         return repository.save(cliente);
     }
 
-    @GetMapping("cliente/{id}")
+    @GetMapping("/cliente/{id}")
     public Cliente acharId(@PathVariable Integer id) {
         return repository.findById(id)
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Cliente não encontrado"));
     }
 
-    @GetMapping("clientes")
+    @GetMapping("cliente")
     public List<Cliente> clientes () {
        return repository.findAll();
     }
 
-    @DeleteMapping("/deletar/{id}")
+    @DeleteMapping("/cliente/deletar/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void deletarId(@PathVariable Integer id) {
         repository.findById(id)
@@ -44,7 +44,7 @@ public class ClientController {
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Cliente não encontrado"));
     }
 
-    @PutMapping("/atualizar/{id}")
+    @PutMapping("/cliente/atualizar/{id}")
     @ResponseStatus(HttpStatus.OK)
     public void atualizar(@PathVariable Integer id, @RequestBody Cliente clienteAtualizado) {
         repository.findById(id)
