@@ -26,7 +26,7 @@ public class ServicoPrestadoController {
     @Autowired
     private BigDecimalConvert convert;
 
-    @PostMapping("/salvar/servico")
+    @PostMapping("/servicos/salvar")
     @ResponseStatus(HttpStatus.CREATED)
     public ServicoPrestado salvar(@RequestBody @Valid ServicoPrestadoDTO dto) {
 
@@ -46,41 +46,12 @@ public class ServicoPrestadoController {
         return repository.save(servicoPrestado);
     }
 
-
-//    @GetMapping("/servico/{id}")
-//    public Cliente acharId(@PathVariable Integer id) {
-//        return repository.findById(id)
-//                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Cliente não encontrado"));
-//    }
-//
-    @GetMapping("/servico")
+    @GetMapping("/servicos")
     public List<ServicoPrestado> servicoPrestados
     (@RequestParam(value = "nome", required = false, defaultValue = "") String nome,
-     @RequestParam(value = "mes", required = false) String mes)
+     @RequestParam(value = "mes", required = false) Integer mes)
     {
        return repository.findByNomeClienteAndMes("%" + nome + "%", mes);
     }
-//
-//    @DeleteMapping("/deletar/{id}")
-//    @ResponseStatus(HttpStatus.NO_CONTENT)
-//    public void deletarId(@PathVariable Integer id) {
-//        repository.findById(id)
-//                .map(cliente -> {
-//                    repository.delete(cliente);
-//                    return Void.TYPE;
-//                })
-//                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Cliente não encontrado"));
-//    }
-//
-//    @PutMapping("/atualizar/{id}")
-//    @ResponseStatus(HttpStatus.OK)
-//    public void atualizar(@PathVariable Integer id, @RequestBody Cliente clienteAtualizado) {
-//        repository.findById(id)
-//                .map(cliente -> {
-//                    cliente.setNome(clienteAtualizado.getNome());
-//                    cliente.setCpf(clienteAtualizado.getCpf());
-//                    return repository.save(cliente);
-//                })
-//                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Cliente não encontrado"));
-//    }
+
 }
