@@ -15,10 +15,8 @@ public class ResourceServerConfig extends ResourceServerConfigurerAdapter {
                 .authorizeRequests()
                 .antMatchers("/salvar/usuario").permitAll()
                 .antMatchers(
-                        "/clientes/**",
-                        "/servico/**").authenticated()
+                        "/cliente/**",
+                        "/servicos/**").authenticated()
                 .anyRequest().denyAll();
-
-        ;
     }
 }
